@@ -1,0 +1,42 @@
+{
+  "name": "deklarota-demo-todomvc",
+  "version": "1.0.0",
+  "description": "TodoMVC demo created with Deklarota",
+  "keywords": [
+    "todomvc"
+  ],
+  "author": "Vladislav Orlov <me@orlov-vo.ru>",
+  "license": "MIT",
+  "homepage": "https://github.com/orlov-vo/deklarota-demo-todomvc#readme",
+  "repository": "github:orlov-vo/deklarota-demo-todomvc",
+  "bugs": {
+    "url": "https://github.com/orlov-vo/deklarota-demo-todomvc/issues",
+    "email": "me@orlov-vo.ru"
+  },
+  "files": [
+    "dist/**/*"
+  ],
+  "main": "dist/index.html",
+  "scripts": {
+    "start": "parcel serve --cache-dir .cache ./src/index.html",
+    "build": "parcel build --cache-dir .cache --no-scope-hoist ./src/index.html",
+    "format": "prettier --write \"src/**/*.ts\""
+  },
+  "targets": {
+    "main": {
+      "distDir": "./dist"
+    }
+  },
+  "browserslist": [
+    "last 2 Chrome versions"
+  ],
+  "dependencies": {
+    "cash-dom": "^8.1.0",
+    "dkt": "0.0.1",
+    "lodash-es": "^4.17.15",
+    "todomvc-app-css": "^2.3.0"
+  },
+  "devDependencies": {
+    "parcel": "^2.0.0-nightly.407"
+  }
+}
