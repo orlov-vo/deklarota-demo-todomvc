@@ -1,5 +1,5 @@
 import { prepareAppRuntime } from 'dkt/core';
-import { init as initBusCore } from './bus/core';
+import { initBusCore } from './bus/core';
 import { App } from './models/App';
 import { init as initInterfaces } from './interfaces';
 

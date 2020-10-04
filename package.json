@@ -37,6 +37,6 @@
     "todomvc-app-css": "^2.3.0"
   },
   "devDependencies": {
-    "parcel": "^2.0.0-nightly.407"
+    "parcel": "^2.0.0-nightly.415"
   }
 }

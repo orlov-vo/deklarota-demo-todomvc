@@ -8,8 +8,68 @@
     <link rel="stylesheet" href="./main.css" />
   </head>
   <body>
-    <section class="todoapp">
-      Loading...
+    <section id="app" class="todoapp">
+      <div pv-props="hidden: {{_provoda_id}}">Loading...</div>
+      <div hidden pv-props="hidden: {{!_provoda_id}}">
+        <header class="header">
+          <h1>todos</h1>
+          <input
+            class="new-todo"
+            placeholder="What needs to be done?"
+            autofocus
+            pv-events="keydown:tryCreateTodo"
+          />
+        </header>
+
+        <section class="main" pv-when="isListVisible">
+          <input
+            id="toggle-all"
+            class="toggle-all"
+            type="checkbox"
+            pv-props="checked: {{isAllTodosCompleted}}"
+            pv-events="change::dispatch:toggleAllTodos"
+          />
+          <label for="toggle-all">Mark all as complete</label>
+          <ul class="todo-list">
+            <li
+              pv-repeat="todo in visibleTodos"
+              pv-class="completed: {{todo.completed}} editing: {{focusedTodoId == todo.id}}"
+            >
+              <div class="view">
+                <input
+                  class="toggle"
+                  type="checkbox"
+                  pv-props="checked: {{todo.completed}}"
+                  pv-events="change::dispatch:toggleTodo:{{todo.id}}"
+                />
+                <label pv-events="dblclick:updateAttr:focusedTodoIdRaw:{{todo.id}}" pv-text="{{todo.title}}"></label>
+                <button class="destroy" pv-events="click::dispatch:removeTodo:{{todo.id}}"></button>
+              </div>
+              <input
+                class="edit"
+                pv-props="value: {{todo.title}}"
+                pv-events="blur:updateAttr:focusedTodoIdRaw keydown:tryUpdateTitle:{{todo.id}}"
+              />
+            </li>
+          </ul>
+        </section>
+
+        <footer class="footer" pv-when="isListVisible">
+          <span class="todo-count"><strong pv-text="{{leftItems}}">0</strong> item left</span>
+          <ul class="filters">
+            <li>
+              <a pv-class="selected: {{activeRoute === 'all'}}" href="#/">All</a>
+            </li>
+            <li>
+              <a pv-class="selected: {{activeRoute === 'active'}}" href="#/active">Active</a>
+            </li>
+            <li>
+              <a pv-class="selected: {{activeRoute === 'completed'}}" href="#/completed">Completed</a>
+            </li>
+          </ul>
+          <button class="clear-completed" pv-events="click::dispatch:clearCompleted">Clear completed</button>
+        </footer>
+      </div>
     </section>
     <footer class="info">
       <p>Double-click to edit a todo</p>

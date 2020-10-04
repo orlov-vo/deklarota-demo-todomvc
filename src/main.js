@@ -1,22 +1,15 @@
-import { initView } from 'dkt/view';
+import startMessaging from './bus/startMessaging';
 import { App } from './views/App';
 
-const worker = new SharedWorker('./worker.js', { type: 'module' });
+const worker = new SharedWorker('./worker.js');
+const initView = startMessaging(window, worker.port);
 
-async function main() {
-  const interfaces = { win: window };
-  const view = await initView(
-    {
-      mpx: null,
-      interfaces,
-      RootView: App,
-      name: 'general',
-      proxies_space: null,
+initView(() => {
+  return {
+    RootView: App,
+    interfaces: {
+      win: window,
+      window,
     },
-    { proxies: null, sync_r: null },
-  );
-
-  window.rootView = view; // for debugging only
-}
-
-main();
+  };
+});
