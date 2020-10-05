@@ -32,7 +32,7 @@
   ],
   "dependencies": {
     "cash-dom": "^8.1.0",
-    "dkt": "0.0.1",
+    "dkt": "github:orlov-vo/deklarota#publish-npm",
     "lodash-es": "^4.17.15",
     "todomvc-app-css": "^2.3.0"
   },
