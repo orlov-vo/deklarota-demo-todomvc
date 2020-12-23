@@ -6,7 +6,9 @@ import initSync from './initSync';
  * @param {MessagePort} port
  */
 export default function startMessaging(window, port) {
-  port.start();
+  if (typeof port.start === 'function') {
+    port.start();
+  }
 
   return initSync(window, {
     send: data => {
